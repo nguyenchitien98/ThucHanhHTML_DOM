@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Thực hành HTML DOM</title>
+</head>
+<body>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">Thành viên đăng ký</h3>
+            <p class="desc">Ăn ngủ cùng nhau ❤️</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Tên đầy đủ</label>
+                <input id="fullname" name="fullname" type="text" placeholder="VD: Chí Tiến" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" placeholder="VD: abc@gmail.com" type="text" class="form-control">
+                <span class="form-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input id="password" name="password" type="password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password-confirmation" class="form-label">Nhập lại mật khẩu</label>
+                <input id="password-confirmation" name="password-confirmation" type="password" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group gender">
+                <label for="gender" class="form-label">Giới tính</label>
+                <input name="gender" type="radio" value="male" class="form-control">Nam
+                <input name="gender" type="radio" value="female" class="form-control">Nữ
+                <input name="gender" type="radio" value="other" class="form-control">Khác
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group test">
+                <label for="test" class="form-label">Test</label>
+                <input name="test" type="checkbox" value="1" class="form-control">1
+                <input name="test" type="checkbox" value="2" class="form-control">2
+                <input name="test" type="checkbox" value="3" class="form-control">3
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="avatar" class="form-label">Ảnh</label>
+                <input id="avatar" name="avatar" type="file" class="form-control">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="province" class="form-label">Tỉnh/TP</label>
+                <select id="province" name="province" class="form-control">
+                    <option value="">--Chọn Tỉnh/TP--</option>
+                    <option value="hni">Hà Nội</option>
+                    <option value="hpg">Hải Phòng</option>
+                </select>
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit">Đăng ký</button>
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-1',
+            errorSelector: '.form-message',
+            formGroupSelector: '.form-group',
+            rules: [
+                // Validator.isRequired('#fullname', 'Không được bỏ trống'),
+                // Validator.isRequired('#email', 'Không được bỏ trống'),
+                // Validator.isEmail('#email','Trường này phải là email'),
+                // Validator.isRequired('#password', 'Không được bỏ trống'),
+                // Validator.minLength('#password',6, 'Phải lớn hơn 6 ký tự'),
+                // Validator.isRequired('input[name="gender"]'),
+                // Validator.isRequired('input[name="test"]'),
+                Validator.isRequired('#avatar'),
+                // Validator.isRequired('#province'),
+                // Validator.isRequired('#password-confirmation', 'Không được bỏ trống'),
+                // Validator.isConfirmed('#password-confirmation', function(){
+                //     return document.querySelector('#form-1  #password').value;
+                // }, 'Mật khẩu nhập lại không chính xác'),
+            ],
+            onSubmit: function(data){
+                // Call API
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+</html>
